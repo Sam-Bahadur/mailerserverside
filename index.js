@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer"); //importing node mailer
 const cors = require("cors");
-
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -24,10 +23,13 @@ app.post("/sendemail", (req, res, next) => {
       In Auth object , we specify our email and password
     */
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    // service: "gmail",
+    host: "smtp.zoho.com",
+    port: 465,
+    secure: true,
     auth: {
-      user: `pradipktimsina@gmail.com`, //replace with your email
-      pass: `vpnoiyrt3964`, //replace with your password
+      user: "pradeep@mayanmedia.com.np", //replace with your email
+      pass: "Qwerty!2345678", //replace with your password
     },
   });
 
@@ -38,8 +40,8 @@ app.post("/sendemail", (req, res, next) => {
       html is our form details which we parsed using bodyParser.
     */
   const mailOptions = {
-    from: "timsinakausila@gmail.com", //replace with your email
-    to: "pradipktimsina@gmail.com", //replace with your email
+    from: "pradeep@mayanmedia.com.np", //replace with your email
+    to: "aabhusan@mayanmedia.com.np", //replace with your email
     subject: `Contact name: ${name}`,
     html: `<h1>Contact details</h1>
             <h2> Name:${name} </h2><br>
