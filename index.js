@@ -97,7 +97,7 @@ app.post("/sendemailsamabikas", (req, res, next) => {
       html is our form details which we parsed using bodyParser.
     */
   const mailOptions = {
-    from: "pradeep@mayanmedia.com.np", //replace with your email
+    from: "samabikas@gmail.com", //replace with your email
     to: `${receiver_email}`, //replace with your email
     subject: `Contact name: ${name}`,
     html: `<h1>Contact details</h1>
