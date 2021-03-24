@@ -125,7 +125,7 @@ app.post("/sendemailsamabikas", (req, res, next) => {
 app.post("/sendemailkbthapa", (req, res, next) => {
   console.log(req.body);
   const { name, email, phone, message } = req.body;
-  receiver_email = "pradipktimsina@gmail.com";
+  receiver_email = "thapa.kb@gmail.com";
   const transporter = nodemailer.createTransport({
     // service: "gmail",
     host: "smtp.zoho.com",
