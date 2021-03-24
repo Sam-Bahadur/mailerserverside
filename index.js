@@ -78,7 +78,7 @@ app.post("/sendemailsamabikas", (req, res, next) => {
       here we are using gmail as our service 
       In Auth object , we specify our email and password
     */
-  receiver_email = "pradipktimsina@gmail.com";
+  receiver_email = "samabikas@gmail.com";
   const transporter = nodemailer.createTransport({
     // service: "gmail",
     host: "smtp.zoho.com",
@@ -97,7 +97,7 @@ app.post("/sendemailsamabikas", (req, res, next) => {
       html is our form details which we parsed using bodyParser.
     */
   const mailOptions = {
-    from: "samabikas@gmail.com", //replace with your email
+    from: "pradeep@mayanmedia.com.np", //replace with your email
     to: `${receiver_email}`, //replace with your email
     subject: `Contact name: ${name}`,
     html: `<h1>Contact details</h1>
@@ -117,6 +117,44 @@ app.post("/sendemailsamabikas", (req, res, next) => {
     } else {
       console.log("Email sent: " + info.response);
       res.send("Sent Successfully"); //if mail is sent successfully send Sent successfully as response
+    }
+  });
+});
+
+// thapakb.com server here
+app.post("/sendemailkbthapa", (req, res, next) => {
+  console.log(req.body);
+  const { name, email, phone, message } = req.body;
+  receiver_email = "pradipktimsina@gmail.com";
+  const transporter = nodemailer.createTransport({
+    // service: "gmail",
+    host: "smtp.zoho.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: "pradeep@mayanmedia.com.np",
+      pass: "Qwerty!2345678",
+    },
+  });
+
+  const mailOptions = {
+    from: "pradeep@mayanmedia.com.np",
+    to: `${receiver_email}`,
+    subject: `Contact name: ${name}`,
+    html: `<h1>Contact details</h1>
+            <h2> Name:${name} </h2><br>
+            <h2> Email:${email} </h2><br>
+            <h2> Phone Number:${phone} </h2><br>
+            <h2> Message:${message}</h2><br>`,
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+      res.send("error");
+    } else {
+      console.log("Email sent: " + info.response);
+      res.send("Sent Successfully");
     }
   });
 });
